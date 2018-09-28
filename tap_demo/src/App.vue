@@ -2,15 +2,21 @@
   <div id="app">
     <Theader></Theader>
     <router-view/>
+    <Tfooter></Tfooter>
+    <Totop></Totop>
   </div>
 </template>
 
 <script>
 import Theader from '@/components/Theader'
+import Tfooter from '@/components/Tfooter'
+import Totop from '@/components/Totop'
 export default {
   name: 'App',
   components:{
-    Theader
+    Theader,
+    Tfooter,
+    Totop
   }
 }
 </script>
