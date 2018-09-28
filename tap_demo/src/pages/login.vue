@@ -47,7 +47,7 @@ export default {
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }).then(res => {
                 if(res.data.code === 200){
-                    alert('登录成功');
+                    
                 }
             }).catch(err => {
                 console.log(err);
