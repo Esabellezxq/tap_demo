@@ -16,9 +16,11 @@
 				<div class="col-sm-9">
 					<div class="talk_con">
 						<div class="talk_show">
-							<div class="atalk">
-								<img src="" />
-								<span id="asay">hello 你吃饭了吗？hello,hello 你吃饭了吗？hello</span>
+							<div class="atalk" v-for="(item,index) in chatMessage" :key="index">
+								<!-- <img :src="item.avater" /> -->
+								<img src="/static/chat/avater.jpg" class="avater"/>
+								<p class="user-name">{{item.username}}</p>
+								<span>{{item.content}}</span>
 							</div>
 						</div>
 						<div class="talk_input">
@@ -30,8 +32,9 @@
 				<div class="col-sm-3">
 					<p class="title">在线成员</p>
 					<hr />
-					<div class="userimg">
-						<img src="" /><span>快乐肥仔1号</span>
+					<div class="userimg" v-for="(item,index) in onlineUsers" :key="index">
+						<img src="/static/chat/avater.jpg" class="avater"/>
+						<span>{{item.username}}</span>
 					</div>
 				</div>
 			</div>
@@ -52,16 +55,40 @@ export default {
 			{id:6, title: '王者荣耀尬聊群', tip: '打了三千把没上过王者', img: '/static/chat/royal.jpg'},
 		],
 		isChat: false,
-		sendMessage: ''
+		sendMessage: '',
+		avater: '',
+		username: 'kiki',
+		onlineUsers: [],
+		socket: null,
+		room: null,
+		chatMessage: []
 	  }
   	},
   	methods: {
 		chooseChatGroup: function(id){
-			this.isChat = true;
+			let that = this;
+			that.isChat = true;
+			that.room = id;
 			let socket = io('http://localhost:3000');
+			that.socket = socket;
+			socket.emit('join', {room: id, avater: that.avater, username: that.username});
+			socket.on('joined', data => {
+				that.onlineUsers = data;
+			});
+			socket.on('leave', data => {
+				that.onlineUsers = data;
+			});
+
+			socket.on('recieveChat', data => {
+				that.chatMessage.push(data);
+			})
+		},
+		send: function(){
+			let that = this;
+			let socket = this.socket;
+			socket.emit('chat', {room: that.room, avater: that.avater, username: that.username, content: that.sendMessage});
 		}
-  	}
-  
+	  }
 }
 </script>
 <style scoped>
@@ -201,7 +228,8 @@ border-radius: 24px;
 }
 
 .atalk {
-margin: 12px;
+margin: 12px 50px;
+text-align: left
 }
 
 .atalk span {
@@ -248,7 +276,15 @@ padding-top: 15px;
 }
 
 .userimg {
-height: 56px;
+	height: 56px;
+}
+.user-name{
+	display: inline-block; 
+	font-size: 12px;
+}
+.avater{
+	height: 50px;
+	width: 50px
 }
 
 .userimg span {
