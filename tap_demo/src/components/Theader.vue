@@ -12,7 +12,7 @@
         <router-link to="/chat">论坛</router-link>
       </div>
       <div class="loginBtn">
-        <a href="#">登录</a>
+        <router-link to="/login">登录</router-link>
       </div>
     </div>
   </div>
