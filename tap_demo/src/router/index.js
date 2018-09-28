@@ -5,6 +5,7 @@ import chat from '@/pages/chat'
 import games from '@/pages/games'
 import discover from '@/pages/discover'
 import main from '@/pages/main'
+import login from '@/pages/login'
 
 Vue.use(Router)
 
@@ -34,6 +35,11 @@ export default new Router({
       path: '/main',
       name: 'main',
       component: main
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: login
     }
   ]
 })

@@ -1,76 +1,70 @@
 <template>
-	<div class="box">
-		<div class="box1">
+  <div id="chat">
+	<div class="box" v-if="!isChat">
+		<div class="box1" v-for="item in chatGroup" :key="item.id" @click="chooseChatGroup(item.id)">
 			<div class="join">
-				<p class="name">王者荣耀尬聊群</p>
-				<p class="introduce">打了三千把没上过王者</p>
-				
+				<p class="name">{{item.title}}</p>
+				<p class="introduce">{{item.tip}}</p>
 			</div>
 			<div class="photo">
-				<img src="/static/chat/royal.jpg" />
+				<img :src="item.img" />
 			</div>
 		</div>
-		<div class="box1">
-			<div class="join">
-				<p class="name">俄罗斯方块尬聊群</p>
-				<p class="introduce">打了三千把没上过王者</p>
-			</div>
-			<div class="photo">
-				<img src="/static/chat/russianBlock.jpg" />
-			</div>
-		</div>
-		<div class="box1">
-			<div class="join">
-				<p class="name">qq炫舞尬聊群</p>
-				<p class="introduce">打了三千把没上过王者</p>
-			</div>
-			<div class="photo">
-				<img src="/static/chat/qqDance.jpg" />
-			</div>
-		</div>
-		<div class="box1">
-			<div class="join">
-				<p class="name">qq飞车尬聊群</p>
-				<p class="introduce">打了三千把没上过王者</p>
-			</div>
-			<div class="photo">
-				<img src="/static/chat/qqCar.jpg" />
-			</div>
-		</div>
-		<div class="box1">
-			<div class="join">
-				<p class="name">dnf尬聊群</p>
-				<p class="introduce">打了三千把没上过王者</p>
-			</div>
-			<div class="photo">
-				<img src="/static/chat/dnf.jpg" />
-			</div>
-		</div>
-		<div class="box1">
-			<div class="join">
-				<p class="name">cf尬聊群</p>
-				<p class="introduce">打了三千把没上过王者</p>
-			</div>
-			<div class="photo">
-				<img src="/static/chat/cf.jpg" />
+	</div>
+    <div class="container" v-if="isChat">
+			<div class="row">
+				<div class="col-sm-9">
+					<div class="talk_con">
+						<div class="talk_show">
+							<div class="atalk">
+                <img src="" />
+                <span id="asay">hello 你吃饭了吗？hello,hello 你吃饭了吗？hello</span>
+              </div>
+						</div>
+						<div class="talk_input">
+							<input type="text" class="talk_word" id="talkwords">
+							<input type="button" value="" class="talk_sub" id="talksub">
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<p class="title">在线成员</p>
+					<hr />
+					<div class="userimg">
+						<img src="" /><span>快乐肥仔1号</span>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
 </template>
-
 <script>
 export default {
-  name: 'choice',
+  name: 'chat',
   data() {
   	return {
-
+		chatGroup: [
+			{id: 1, title: '俄罗斯方块尬聊群', tip: '打了三千把没上过王者', img: '/static/chat/russianBlock.jpg'},
+			{id: 2, title: 'qq炫舞尬聊群', tip: '打了三千把没上过王者', img: '/static/chat/qqDance.jpg'},
+			{id: 3, title: 'dnf尬聊群', tip: '打了三千把没上过王者', img: '/static/chat/dnf.jpg'},
+			{id: 4, title: 'cf尬聊群', tip: '打了三千把没上过王者', img: '/static/chat/cf.jpg'},
+			{id: 5, title: 'qq飞车尬聊群', tip: '打了三千把没上过王者', img: '/static/chat/qqCar.jpg'},
+			{id:6, title: '王者荣耀尬聊群', tip: '打了三千把没上过王者', img: '/static/chat/royal.jpg'},
+		],
+		isChat: false
 	  }
-  }
+  	},
+  	methods: {
+		chooseChatGroup: function(id){
+			this.isChat = true;
+			let socket = io('http://localhost:3000');
+			socket.emit('hi',1);
+		}
+  	}
   
 }
 </script>
-<style>
-
+<style scoped>
 .box2{
 	width: 1366px;
 	height: 80px;
@@ -150,4 +144,114 @@ export default {
 	height: 300px;
 }
 
+
+.talk_con {
+width:100%;
+height: 500px;				
+margin: 0px auto 0;
+background: #f9f9f9;
+}
+
+.talk_show {
+width: 100%;
+height: 496px;
+/*border: 1px solid #666;
+background: #fff;*/
+margin: 10px auto 0;
+overflow: auto;
+}
+
+.talk_input {
+width: 96%;
+margin: 10px auto 0;
+height: 48px;
+background:white;
+border-radius: 14px;
+border:1px solid #D2D2D2;
+
+}
+
+.whotalk {
+width: 80px;
+height: 30px;
+float: left;
+outline: none;
+}
+
+.talk_word {
+width: 90%;
+height: 40px;
+margin: 3px 0 0 5px;
+border:none;
+float: left;								
+outline: none;
+text-indent: 10px;
+}
+
+.talk_sub {
+width: 40px;
+background:#2f7ffc;
+/* background: url(img/2.png) no-repeat #2f7ffc 8px;				 */
+border:none;
+color:white;
+height: 40px;
+float: left;
+margin: 3px 36px 0 0px;
+border-radius: 24px;
+}
+
+.atalk {
+margin: 12px;
+}
+
+.atalk span {
+display: inline-block;
+padding-left: 10px;
+background: #FFFFFF;
+border-radius: 10px;
+color: black;
+padding: 13px 10px;
+margin-left: 10px;
+}
+
+.btalk {
+margin: 12px;
+text-align: right;
+}
+
+.btalk span {
+display: inline-block;
+padding-left: 10px;
+background: #2f7ffc;
+border-radius: 10px;
+color: #fff;
+padding: 13px 10px;
+margin-right: 10px;
+}
+
+body {
+background: #dfecfc;
+}
+
+.col-sm-3 {
+background: #FFFFFF;
+height: 572px;
+border: 1px solid #d2d2d2;
+border-radius: 14px;
+}
+
+.title {
+height: 50px;
+font-size: 16px;
+line-height: 50px;
+padding-top: 15px;
+}
+
+.userimg {
+height: 56px;
+}
+
+.userimg span {
+padding-left: 10px;
+}
 </style>
