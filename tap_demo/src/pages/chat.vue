@@ -1,29 +1,29 @@
 <template>
-  <div id="chat">
-	<div class="box" v-if="!isChat">
-		<div class="box1" v-for="item in chatGroup" :key="item.id" @click="chooseChatGroup(item.id)">
-			<div class="join">
-				<p class="name">{{item.title}}</p>
-				<p class="introduce">{{item.tip}}</p>
-			</div>
-			<div class="photo">
-				<img :src="item.img" />
+  	<div id="chat">
+		<div class="box" v-if="!isChat">
+			<div class="box1" v-for="item in chatGroup" :key="item.id" @click="chooseChatGroup(item.id)">
+				<div class="join">
+					<p class="name">{{item.title}}</p>
+					<p class="introduce">{{item.tip}}</p>
+				</div>
+				<div class="photo">
+					<img :src="item.img" />
+				</div>
 			</div>
 		</div>
-	</div>
-    <div class="container" v-if="isChat">
+		<div class="container" v-if="isChat">
 			<div class="row">
 				<div class="col-sm-9">
 					<div class="talk_con">
 						<div class="talk_show">
 							<div class="atalk">
-                <img src="" />
-                <span id="asay">hello 你吃饭了吗？hello,hello 你吃饭了吗？hello</span>
-              </div>
+								<img src="" />
+								<span id="asay">hello 你吃饭了吗？hello,hello 你吃饭了吗？hello</span>
+							</div>
 						</div>
 						<div class="talk_input">
-							<input type="text" class="talk_word" id="talkwords">
-							<input type="button" value="" class="talk_sub" id="talksub">
+							<input type="text" class="talk_word" v-model="sendMessage">
+							<input type="button" value="" class="talk_sub" @click="send()">
 						</div>
 					</div>
 				</div>
@@ -51,14 +51,14 @@ export default {
 			{id: 5, title: 'qq飞车尬聊群', tip: '打了三千把没上过王者', img: '/static/chat/qqCar.jpg'},
 			{id:6, title: '王者荣耀尬聊群', tip: '打了三千把没上过王者', img: '/static/chat/royal.jpg'},
 		],
-		isChat: false
+		isChat: false,
+		sendMessage: ''
 	  }
   	},
   	methods: {
 		chooseChatGroup: function(id){
 			this.isChat = true;
 			let socket = io('http://localhost:3000');
-			socket.emit('hi',1);
 		}
   	}
   
