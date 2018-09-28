@@ -47,12 +47,12 @@ export default {
   data() {
   	return {
 		chatGroup: [
-			{id: 1, title: '俄罗斯方块尬聊群', tip: '打了三千把没上过王者', img: '/static/chat/russianBlock.jpg'},
-			{id: 2, title: 'qq炫舞尬聊群', tip: '打了三千把没上过王者', img: '/static/chat/qqDance.jpg'},
-			{id: 3, title: 'dnf尬聊群', tip: '打了三千把没上过王者', img: '/static/chat/dnf.jpg'},
-			{id: 4, title: 'cf尬聊群', tip: '打了三千把没上过王者', img: '/static/chat/cf.jpg'},
-			{id: 5, title: 'qq飞车尬聊群', tip: '打了三千把没上过王者', img: '/static/chat/qqCar.jpg'},
-			{id:6, title: '王者荣耀尬聊群', tip: '打了三千把没上过王者', img: '/static/chat/royal.jpg'},
+			{id: 1, title: '俄罗斯方块尬聊群', tip: '打了三千把没上过王者', img: './static/chat/pic1.jpg'},
+			{id: 2, title: 'qq炫舞尬聊群', tip: '打了三千把没上过王者', img: './static/chat/pic2.jpg'},
+			{id: 3, title: 'dnf尬聊群', tip: '打了三千把没上过王者', img: './static/chat/pic3.jpg'},
+			{id: 4, title: 'cf尬聊群', tip: '打了三千把没上过王者', img: './static/chat/pic4.jpg'},
+			{id: 5, title: 'qq飞车尬聊群', tip: '打了三千把没上过王者', img: './static/chat/pic5.jpg'},
+			{id:6, title: '王者荣耀尬聊群', tip: '打了三千把没上过王者', img: './static/chat/pic6.jpg'},
 		],
 		isChat: false,
 		sendMessage: '',
