@@ -6,10 +6,10 @@
         <a href="#"><img src="static/main/logo.png" alt=""></a>
       </div>
       <div class="nav">
-        <a href="#">首页</a>
-        <a href="#">发现</a>
-        <a href="#">游戏</a>
-        <a href="#">论坛</a>
+        <router-link to="/main">首页</router-link>
+        <router-link to="/discover">发现</router-link>
+        <router-link to="/game">游戏</router-link>
+        <router-link to="/chat">论坛</router-link>
       </div>
       <div class="loginBtn">
         <a href="#">登录</a>
