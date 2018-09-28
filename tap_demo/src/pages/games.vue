@@ -1,10 +1,10 @@
 <template>
   <div id="games">
-  game
   </div>
 </template>
 
 <script>
+import global_ from '../Global.vue'
 export default {
   name: 'games'
 }

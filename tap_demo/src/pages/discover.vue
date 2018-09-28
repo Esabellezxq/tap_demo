@@ -27,23 +27,19 @@
 </template>
 
 <script>
+import global_ from '../Global.vue'
   export default {
     name: 'discover',
     data() {
       return {
-        domain: 'http://10.3.141.20:3000/',
+        domain: global_.domain,
         discoverList: []
       }
     },
     mounted() {
       let that = this;
-      let instance = axios.create({
-        baseURL: that.domain,
-        timeout: 3000
-      })
-      instance.get('discover').then(res => {
+      global_.instance.get('discover').then(res => {
         that.discoverList = res.data.result;
-        console.log(res.data.result)
       })
     },
   }

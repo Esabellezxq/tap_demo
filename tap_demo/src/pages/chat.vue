@@ -25,7 +25,7 @@
 						</div>
 						<div class="talk_input">
 							<input type="text" class="talk_word" v-model="sendMessage">
-							<input type="button" value="" class="talk_sub" @click="send()">
+							<input type="button" value="发送" class="talk_sub" @click="send()">
 						</div>
 					</div>
 				</div>
@@ -42,6 +42,7 @@
 	</div>
 </template>
 <script>
+import global_ from '../Global.vue'
 export default {
   name: 'chat',
   data() {
@@ -57,7 +58,7 @@ export default {
 		isChat: false,
 		sendMessage: '',
 		avater: '',
-		username: 'kiki',
+		username: '愣头青',
 		onlineUsers: [],
 		socket: null,
 		room: null,
@@ -69,11 +70,12 @@ export default {
 			let that = this;
 			that.isChat = true;
 			that.room = id;
-			let socket = io('http://localhost:3000');
+			let socket = io(global_.domain);
 			that.socket = socket;
 			socket.emit('join', {room: id, avater: that.avater, username: that.username});
 			socket.on('joined', data => {
 				that.onlineUsers = data;
+				console.log(data);
 			});
 			socket.on('leave', data => {
 				that.onlineUsers = data;
@@ -87,6 +89,7 @@ export default {
 			let that = this;
 			let socket = this.socket;
 			socket.emit('chat', {room: that.room, avater: that.avater, username: that.username, content: that.sendMessage});
+			that.sendMessage = '';
 		}
 	  }
 }
@@ -224,7 +227,7 @@ color:white;
 height: 40px;
 float: left;
 margin: 3px 36px 0 0px;
-border-radius: 24px;
+border-radius: 5px;
 }
 
 .atalk {

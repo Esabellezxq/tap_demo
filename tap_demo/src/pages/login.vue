@@ -29,28 +29,29 @@
     </div>
 </template>
 <script>
+import global_ from '../Global.vue'
 export default {
     data () {
         return {
-            user: [
-                {
-                    account: '123456',
-                    pass: '123456'
-                }
-            ],
             account: '',
             pass: ''
         }
     },
     methods: {
         login () {
-            this.user.forEach(e => {
-                if(e.account === this.account && e.pass === this.pass) {
-                    alert('hello')
-                }else{
-                    alert('no curent User')
+            let that = this;
+            let params = new URLSearchParams();
+                params.append('username', that.account);
+                params.append('password',that.pass);
+            global_.instance.post('login', params, {
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }).then(res => {
+                if(res.data.code === 200){
+                    alert('登录成功');
                 }
-            });
+            }).catch(err => {
+                console.log(err);
+            })
         }
     }
 }

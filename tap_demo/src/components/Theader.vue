@@ -8,11 +8,11 @@
       <div class="nav">
         <router-link to="/main">首页</router-link>
         <router-link to="/discover">发现</router-link>
-        <router-link to="/game">游戏</router-link>
+        <router-link to="/games">游戏</router-link>
         <router-link to="/chat">论坛</router-link>
       </div>
       <div class="loginBtn">
-        <a href="#">登录</a>
+        <router-link to="/login">登录</router-link>
       </div>
     </div>
   </div>

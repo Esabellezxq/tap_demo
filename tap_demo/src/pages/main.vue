@@ -14,15 +14,15 @@
     </div>
     <!--main-->
     <div class="main">
-      <div class="listBox">
+      <div class="listBox" v-for="(item, index) in banner" :key="index">
         <div class="listBox-hd">
-          <a href=""><img src="static/main/meimei3.jpg" alt=""></a>
-          <span>精彩推荐</span>
+          <a href="#"><img :src="domain + item.avatar" alt=""></a>
+          <span>{{item.type}}</span>
         </div>
         <div class="listBox-bd">
-          <a href="#" class="bd-title">英雄联盟</a>
-          <a href="#" class="bd-img"><img src="static/main/meimei3.jpg" alt=""></a>
-          <p>我的英雄，愿你永远是那个光芒万丈的少年！</p>
+          <a href="#" class="bd-title">{{item.title}}</a>
+          <a href="#" class="bd-img"><img :src="domain + item.img" alt=""></a>
+          <p>{{item.description}}</p>
         </div>
       </div>
     </div>
@@ -30,22 +30,23 @@
 </template>
 
 <script>
+import global_ from '../Global.vue'
   export default {
     name: 'index',
     data() {
       return {
-        domain: 'http://10.3.141.20:3000/',
-        carousel: []
+        domain: global_.domain,
+        carousel: [],
+        banner: []
       }
     },
     mounted() {
       let that = this;
-      let instance = axios.create({
-        baseURL: that.domain
-        // timeout: 3000
-      })
-      instance.get('carousel').then(res => {
+      global_.instance.get('carousel').then(res => {
         this.carousel = res.data.carousel;
+      })
+      global_.instance.get('banner').then(res => {
+        this.banner = res.data.banner;
       })
     },
   }
