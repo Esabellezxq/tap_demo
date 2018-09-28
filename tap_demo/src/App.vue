@@ -1,12 +1,17 @@
 <template>
   <div id="app">
+    <Theader></Theader>
     <router-view/>
   </div>
 </template>
 
 <script>
+import Theader from '@/components/Theader'
 export default {
-  name: 'App'
+  name: 'App',
+  components:{
+    Theader
+  }
 }
 </script>
 
