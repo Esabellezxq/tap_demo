@@ -55,7 +55,6 @@
 				<img src="/static/chat/cf.jpg" />
 			</div>
 		</div>
-
 	</div>
 </template>
 
@@ -64,7 +63,7 @@ export default {
   name: 'choice',
   data() {
   	return {
-		  
+
 	  }
   }
   
