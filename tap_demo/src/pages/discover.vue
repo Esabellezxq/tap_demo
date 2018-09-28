@@ -5,18 +5,20 @@
 				<h3>{{item.type}}</h3>
 				<a href="#">更多</a>
 			</div>
-			<div class="app-item" v-for="(sub,i) in item.games" :key="i">
+			<div class="flex-row">
+        <div class="app-item" v-for="(sub,i) in item.games" :key="i">
 				<img :src="domain+sub.filePath" />
 				<div class="app-item-caption">
 					<span class="item-caption-icon">
 					  <a href="#">{{sub.title}}</a>
 				  </span>
 					<span class="item-caption-label">
-				<a href="#">卡牌</a>
-				<span class="score">9.9 ★</span>
+				    <a href="#">卡牌</a>
 					</span>
+          <span class="score">9.9 ★</span>
 				</div>
 			</div>
+      </div>
 		</div>
   </div>
 </template>
@@ -45,6 +47,14 @@ export default {
 </script>
 
 <style>
+#discover{
+  width: 1040px;
+  margin: 0 auto;
+}
+.flex-row{
+  display: flex;
+  flex-direction: row;
+}
 .app-item {
 	width: 168px;
 	height: 233px;
@@ -53,10 +63,13 @@ export default {
 	background-color: white;
 	display: inline-block;
 	overflow: hidden;
-	border-radius: 3px;
-	box-shadow: 0 5px 50px rgba(0, 0, 0, .05);
+	border-radius: 4px;
+  box-shadow: 0 5px 50px rgba(0, 0, 0, .05);
 }
-
+.score{
+  display: block;
+  text-align: right;
+}
 .app-item img {
 	width: 136px;
 	height: 136px;
@@ -104,14 +117,16 @@ export default {
 
 .item-caption-label {
 	line-height: 40px;
-	margin: 0 17px;
+  margin: 0;
+  float: right;
 }
 
 .app-item-caption {}
 
 .app-item-title {
-	margin: 0 0 15px;
-	border-bottom: 1px solid #ddd;
+	margin: 30px 0 15px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
 }
 
 .app-item-title h3 {
