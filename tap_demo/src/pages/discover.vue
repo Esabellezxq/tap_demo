@@ -1,139 +1,180 @@
 <template>
   <div id="discover">
-    <div class="item"  v-for="(item,index) in discoverList" :key="index">
-			<div class="app-item-title">
-				<h3>{{item.type}}</h3>
-				<a href="#">更多</a>
-			</div>
-			<div class="app-item" v-for="(sub,i) in item.games" :key="i">
-				<img :src="domain+sub.filePath" />
-				<div class="app-item-caption">
-					<span class="item-caption-icon">
-					  <a href="#">{{sub.title}}</a>
-				  </span>
-					<span class="item-caption-label">
-				<a href="#">卡牌</a>
-				<span class="score">9.9 ★</span>
-					</span>
-				</div>
-			</div>
-		</div>
+    <div class="dis-img">
+      <a href="#"><img src="static/discover/fangzhou.png" alt=""></a>
+    </div>
+    <div class="item" v-for="(item,index) in discoverList" :key="index">
+      <div class="app-item-title">
+        <h3>{{item.type}}</h3>
+        <a href="#">更多</a>
+      </div>
+      <div class="app-item-list">
+        <div class="app-item" v-for="(sub,i) in item.games" :key="i">
+          <img :src="domain+sub.filePath"/>
+          <div class="app-item-caption">
+            <div class="item-caption-icon">
+              <a href="#">{{sub.title}}</a>
+            </div>
+            <div class="item-caption-label">
+              <a href="#">卡牌</a>
+              <span class="score">9.9 ★</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'discover',
-  data() {
-    return {
-      domain: 'http://10.3.141.20:3000/',
-      discoverList: []
-    }
-  },
-  mounted() {
-    let that = this;
-    let instance = axios.create({
-      baseURL: that.domain,
-      timeout: 3000
-    })
-    instance.get('discover').then(res => {
-      that.discoverList = res.data.result;
-      console.log(res.data.result)
-    })
-  },
-}
+  export default {
+    name: 'discover',
+    data() {
+      return {
+        domain: 'http://10.3.141.20:3000/',
+        discoverList: []
+      }
+    },
+    mounted() {
+      let that = this;
+      let instance = axios.create({
+        baseURL: that.domain,
+        timeout: 3000
+      })
+      instance.get('discover').then(res => {
+        that.discoverList = res.data.result;
+        console.log(res.data.result)
+      })
+    },
+  }
 </script>
 
 <style>
-.app-item {
-	width: 168px;
-	height: 233px;
-	vertical-align: middle;
-	margin: 8px;
-	background-color: white;
-	display: inline-block;
-	overflow: hidden;
-	border-radius: 3px;
-	box-shadow: 0 5px 50px rgba(0, 0, 0, .05);
-}
+  * {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
 
-.app-item img {
-	width: 136px;
-	height: 136px;
-	display: block;
-	margin: 16px;
-}
+  .dis-img {
+    width: 100%;
+    height: 450px;
+    overflow: hidden;
+  }
 
-.item-caption-icon a {
-	margin: 0 17px;
-	line-height: 20px;
-	font-size: 16px;
-	white-space: nowrap;
-	-webkit-box-flex: 1;
-	flex: auto;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	text-decoration: none;
-	color: black;
-}
+  .dis-img a {
+    display: block;
+    width: 100%;
+    height: 450px;
+  }
 
-.item-caption-icon a:hover {
-	text-decoration: underline;
-	color: black;
-}
+  .dis-img a img {
+    width: 100%;
+  }
 
-.item-caption-label a {
-	display: inline-block;
-	color: #666;
-	text-decoration: none;
-	line-height: 20px;
-	font-size: 14px;
-}
+  .item {
+    width: 1040px;
+    margin: 0 auto;
+  }
 
-.item-caption-label a:hover {
-	text-decoration: underline;
-	color: #666;
-}
+  .app-item-title {
+    width: 1040px;
+    height: 40px;
+    border-bottom: 1px solid #ccc;
+    margin-top: 40px;
+    position: relative;
+  }
 
-.score {
-	color: #999;
-	font-size: 14px;
-	float: right;
-	margin: 0 20px 0 0;
-}
+  .app-item-title h3 {
+    text-align: left;
+    color: #666;
+    font-size: 24px;
+    font-weight: bold;
+    border-left: 4px solid #CE2840;
+    padding-left: 8px;
+  }
 
-.item-caption-label {
-	line-height: 40px;
-	margin: 0 17px;
-}
+  .app-item-title a {
+    position: absolute;
+    top: 5px;
+    right: 0;
+    color: #CE2840;
+    text-decoration: none;
+    font-size: 16px;
+  }
 
-.app-item-caption {}
+  .app-item-list {
+    width: 1040px;
+    height: 220px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 20px;
+  }
 
-.app-item-title {
-	margin: 0 0 15px;
-	border-bottom: 1px solid #ddd;
-}
+  .app-item {
+    width: 160px;
+    height: 220px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
 
-.app-item-title h3 {
-	font-weight: normal;
-	margin: 0 0 10px;
-	padding: 0 0 0 8px;
-	line-height: 20px;
-	font-size: 18px;
-	border-left: 4px solid #14B9C8;
-	display: inline-block;
-}
+  .app-item img {
+    width: 126px;
+    height: 126px;
+    display: block;
+    margin: 17px auto 0;
+  }
 
-.app-item-title a {
-	line-height: 20px;
-	color: #14B9C8;
-	float: right;
-	text-decoration: none;
-	font-size: 14px;
-}
+  .app-item-caption {
+    width: 126px;
+    margin: 10px auto 0;
+  }
+  .item-caption-icon {
+    text-align: left;
+  }
 
-.item {
-	margin-left: auto;
-	margin-right: auto;
-}
+  .item-caption-icon a {
+    font-size: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-decoration: none;
+    color: #666;
+  }
+
+  .item-caption-icon a:hover {
+    text-decoration: underline;
+    color: #666;
+  }
+
+  .item-caption-label {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+
+  .item-caption-label a {
+    display: block;
+    color: #666;
+    text-decoration: none;
+    font-size: 14px;
+  }
+
+  .item-caption-label a:hover {
+    text-decoration: underline;
+    color: #666;
+  }
+
+  .item-caption-label .score {
+    display: block;
+    color: #999;
+    font-size: 14px;
+  }
+
 </style>

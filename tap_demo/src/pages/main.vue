@@ -20,7 +20,7 @@
           <span>精彩推荐</span>
         </div>
         <div class="listBox-bd">
-          <a href="#" class="bd-title"><h2>英雄联盟</h2></a>
+          <a href="#" class="bd-title">英雄联盟</a>
           <a href="#" class="bd-img"><img src="static/main/meimei3.jpg" alt=""></a>
           <p>我的英雄，愿你永远是那个光芒万丈的少年！</p>
         </div>
@@ -103,11 +103,13 @@ a {
     display: block;
     padding: 0 0 10px 20px;
   }
-  .listBox-bd a h2 {
+  .listBox-bd a {
+    display: block;
     font-size: 18px;
     font-weight: bold;
     color: #666;
     text-align: left;
+    text-decoration: none;
   }
   .listBox-bd .bd-img {
     display: block;
