@@ -7,7 +7,7 @@
     <p>准备好投球了吗？快拿起球来灌篮吧！<br>
       跃动篮球是一款老少咸宜的热门电子游戏！投篮，解锁新的篮球，快来成为下一个篮球巨星把！<br>
       快来加入吧，和小伙伴们一同享受无尽模式的篮球运动！</p>
-    <a href="http://10.3.141.29:8888?game=dunkshot" target="_blank">开始游戏</a>
+    <a href="http://localhost:8888?game=dunkshot" target="_blank">开始游戏</a>
   </div>
   <div class="list-item">
     <img src="static/games/game2.jpg" alt="">
