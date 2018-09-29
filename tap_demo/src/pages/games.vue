@@ -7,7 +7,7 @@
     <p>准备好投球了吗？快拿起球来灌篮吧！<br>
       跃动篮球是一款老少咸宜的热门电子游戏！投篮，解锁新的篮球，快来成为下一个篮球巨星把！<br>
       快来加入吧，和小伙伴们一同享受无尽模式的篮球运动！</p>
-    <a href="http://localhost:8888?game=dunkshot" target="_blank">开始游戏</a>
+    <a href="http://10.3.141.20:8888?game=dunkshot" target="_blank">开始游戏</a>
   </div>
   <div class="list-item">
     <img src="static/games/game2.jpg" alt="">
@@ -16,14 +16,14 @@
 比2048还要好玩的消除游戏<br>
 烧脑的关卡需要充分开动脑筋<br>
 分数越高难度越来越大</p>
-    <a href="http://localhost:8888?game=hex" target="_blank">开始游戏</a>
+    <a href="http://10.3.141.20:8888?game=hex" target="_blank">开始游戏</a>
   </div>
   <div class="list-item">
     <img src="static/games/game3.jpg" alt="">
     <h3>你没见过的俄罗斯方块</h3>
     <p>《俄罗斯方块》（Tetris， 俄文：Тетрис）是一款由俄罗斯人阿列克谢·帕基特诺夫于1984年6月发明的休闲游戏。<br>
     由小方块组成的不同形状的板块陆续从屏幕上方落下来，玩家通过调整板块的位置和方向，使它们在屏幕底部拼出完整的一条或几条。这些完整的横条会随即消失，给新落下来的板块腾出空间，与此同时，玩家得到分数奖励。没有被消除掉的方块不断堆积起来，一旦堆到屏幕顶端，玩家便告输，游戏结束。</p>
-    <a href="http://localhost:8888?game=russianBlock" target="_blank">开始游戏</a>
+    <a href="http://10.3.141.20:8888?game=russianBlock" target="_blank">开始游戏</a>
   </div>
   </div>
   </div>

@@ -30,6 +30,7 @@
 </template>
 <script>
 import global_ from '../Global.vue'
+import bus from '../assets/eventBus'
 export default {
     data () {
         return {
@@ -47,7 +48,7 @@ export default {
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }).then(res => {
                 if(res.data.code === 200){
-                    
+                    bus.$emit('logined', [res.data.user])
                 }
             }).catch(err => {
                 console.log(err);

@@ -43,29 +43,30 @@
 </template>
 <script>
 import global_ from '../Global.vue'
+import bus from '../assets/eventBus';
 export default {
   name: 'chat',
-  data() {
-  	return {
-		chatGroup: [
-			{id: 1, title: '俄罗斯方块尬聊群', tip: '打了三千把没上过王者', img: './static/chat/pic1.jpg'},
-			{id: 2, title: 'qq炫舞尬聊群', tip: '打了三千把没上过王者', img: './static/chat/pic2.jpg'},
-			{id: 3, title: 'dnf尬聊群', tip: '打了三千把没上过王者', img: './static/chat/pic3.jpg'},
-			{id: 4, title: 'cf尬聊群', tip: '打了三千把没上过王者', img: './static/chat/pic4.jpg'},
-			{id: 5, title: 'qq飞车尬聊群', tip: '打了三千把没上过王者', img: './static/chat/pic5.jpg'},
-			{id:6, title: '王者荣耀尬聊群', tip: '打了三千把没上过王者', img: './static/chat/pic6.jpg'},
-		],
-		isChat: false,
-		sendMessage: '',
-		avater: '',
-		username: '愣头青',
-		onlineUsers: [],
-		socket: null,
-		room: null,
-		chatMessage: []
-	  }
-  	},
-  	methods: {
+  	data() {
+		return {
+			chatGroup: [
+				{id: 1, title: '俄罗斯方块尬聊群', tip: '打了三千把没上过王者', img: './static/chat/pic1.jpg'},
+				{id: 2, title: 'qq炫舞尬聊群', tip: '打了三千把没上过王者', img: './static/chat/pic2.jpg'},
+				{id: 3, title: 'dnf尬聊群', tip: '打了三千把没上过王者', img: './static/chat/pic3.jpg'},
+				{id: 4, title: 'cf尬聊群', tip: '打了三千把没上过王者', img: './static/chat/pic4.jpg'},
+				{id: 5, title: 'qq飞车尬聊群', tip: '打了三千把没上过王者', img: './static/chat/pic5.jpg'},
+				{id:6, title: '王者荣耀尬聊群', tip: '打了三千把没上过王者', img: './static/chat/pic6.jpg'},
+			],
+			isChat: false,
+			sendMessage: '',
+			avater: '',
+			username: '愣头青',
+			onlineUsers: [],
+			socket: null,
+			room: null,
+			chatMessage: []
+		}
+	},
+	methods: {
 		chooseChatGroup: function(id){
 			let that = this;
 			that.isChat = true;
@@ -91,7 +92,13 @@ export default {
 			socket.emit('chat', {room: that.room, avater: that.avater, username: that.username, content: that.sendMessage});
 			that.sendMessage = '';
 		}
-	  }
+	},
+	mounted() {
+		let that = this;
+		bus.$on('logined', data => {
+			that.username = data[0];
+		})
+	},
 }
 </script>
 <style scoped>

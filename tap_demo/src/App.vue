@@ -13,10 +13,17 @@ import Tfooter from '@/components/Tfooter'
 import Totop from '@/components/Totop'
 export default {
   name: 'App',
+  data(){
+    return {
+    }
+  },
   components:{
     Theader,
     Tfooter,
     Totop
+  },
+  methods: {
+   
   }
 }
 </script>

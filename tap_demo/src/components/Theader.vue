@@ -6,13 +6,17 @@
         <a href="#"><img src="static/main/logo.png" alt=""></a>
       </div>
       <div class="nav">
-        <router-link to="/main">首页</router-link>
+        <router-link to="/">首页</router-link>
         <router-link to="/discover">发现</router-link>
         <router-link to="/games">游戏</router-link>
         <router-link to="/chat">论坛</router-link>
       </div>
-      <div class="loginBtn">
+      <div class="loginBtn" v-if="!isLogin">
         <router-link to="/login">登录</router-link>
+      </div>
+      <div class="user-info" v-if="isLogin">
+        <img src="/static/chat/avater.jpg" class="avater"/>
+        <span>欢迎您！ {{user}}</span>
       </div>
     </div>
   </div>
@@ -137,6 +141,15 @@
     margin-top: -20px;
   }
 
+  .user-info{
+    width: 150px;
+    height: 80px;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    margin-top: -20px;
+  }
+
   .loginBtn a {
     display: block;
     width: 90px;
@@ -151,14 +164,30 @@
     text-align: center;
     line-height: 40px;
   }
+  .avater{
+	height: 50px;
+	width: 50px
+  }
 </style>
 <script>
+import bus from '../assets/eventBus';
     export default{
         data(){
-            return {
+          return {
+            isLogin: false,
+            user: null
+          }
+        },
+        methods: {
 
-            }
-        }
+        },
+        created() {
+          let that = this;
+          bus.$on('logined', data => {
+            that.isLogin = true;
+            that.user = data[0];
+          })
+        },
     }
 </script>
 

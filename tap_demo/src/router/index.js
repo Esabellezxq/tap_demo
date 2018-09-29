@@ -12,11 +12,6 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
-    },
-    {
       path: '/chat',
       name: 'chat',
       component: chat
@@ -32,7 +27,7 @@ export default new Router({
       component: discover
     },
     {
-      path: '/main',
+      path: '/',
       name: 'main',
       component: main
     },
